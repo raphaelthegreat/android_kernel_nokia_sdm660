@@ -50,6 +50,10 @@
 #include <linux/uaccess.h>
 #include <linux/uio_driver.h>
 #include <linux/io.h>
+#ifdef CONFIG_FIH_APR
+#include <linux/input/qpnp-power-on.h>
+#include "../../drivers/fih/fih_rere.h"
+#endif
 
 #include <asm/cacheflush.h>
 
@@ -2864,6 +2868,11 @@ static void msm_thermal_bite(int zone_id, int temp)
 	struct scm_desc desc;
 	int tsens_id = 0;
 	int ret = 0;
+
+	#ifdef CONFIG_FIH_APR
+	pr_err("FIH_APR: OVER_TAMPERATURE\n");
+	qpnp_pon_set_restart_reason(FIH_RERE_OVER_TAMPERATURE);
+	#endif
 
 	ret = zone_id_to_tsen_id(zone_id, &tsens_id);
 	if (ret < 0) {
