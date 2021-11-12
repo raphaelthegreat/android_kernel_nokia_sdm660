@@ -186,3 +186,4 @@ obj-$(CONFIG_SENSORS_SSC)	+= sensors/
 obj-$(CONFIG_ESOC)              += esoc/
 obj-$(CONFIG_TEE)		+= tee/
 obj-$(CONFIG_FIH_SDM630_SDM660_PROJS) += fih/
+obj-$(CONFIG_HAPTICS_DRV2605)         += haptics/
