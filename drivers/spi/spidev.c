@@ -791,7 +791,7 @@ static int spidev_remove(struct spi_device *spi)
 
 static struct spi_driver spidev_spi_driver = {
 	.driver = {
-		.name =		"spidev",
+		.name =		"spidevtest",
 		.of_match_table = of_match_ptr(spidev_dt_ids),
 	},
 	.probe =	spidev_probe,
@@ -819,7 +819,7 @@ static int __init spidev_init(void)
 	if (status < 0)
 		return status;
 
-	spidev_class = class_create(THIS_MODULE, "spidev");
+	spidev_class = class_create(THIS_MODULE, "spidevwbl");
 	if (IS_ERR(spidev_class)) {
 		unregister_chrdev(SPIDEV_MAJOR, spidev_spi_driver.driver.name);
 		return PTR_ERR(spidev_class);
